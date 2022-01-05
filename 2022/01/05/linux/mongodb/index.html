@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="陆辉">
+    
+    <title>
+        
+            mongodb |
+        
+        陆辉
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/logo.svg">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"luhui.work","root":"/","language":"zh-CN","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.svg","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":false,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+  </script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                陆辉
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">mongodb</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/avatar.svg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">陆辉</span>
+                        
+                            <span class="author-label">Lv2</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2022-01-05 16:16:57</span>
+        <span class="mobile">2022-01-05 16:16</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Linux/">Linux</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/mongodb/">mongodb</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="官网下载"><a href="#官网下载" class="headerlink" title="官网下载"></a>官网下载</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">wget https://repo.mongodb.org/yum/redhat/7/mongodb-org/4.2/x86_64/RPMS/mongodb-org-server-4.2.5-1.el7.x86_64.rpm</span><br><span class="line">wget https://repo.mongodb.org/yum/redhat/7/mongodb-org/4.2/x86_64/RPMS/mongodb-org-mongos-4.2.5-1.el7.x86_64.rpm</span><br><span class="line">wget https://repo.mongodb.org/yum/redhat/7/mongodb-org/4.2/x86_64/RPMS/mongodb-org-shell-4.2.5-1.el7.x86_64.rpm</span><br><span class="line">wget https://repo.mongodb.org/yum/redhat/7/mongodb-org/4.2/x86_64/RPMS/mongodb-org-tools-4.2.5-1.el7.x86_64.rpm</span><br><span class="line">wget https://repo.mongodb.org/yum/redhat/7/mongodb-org/4.2/x86_64/RPMS/mongodb-org-4.2.5-1.el7.x86_64.rpm</span><br></pre></td></tr></table></figure>
+<h1 id="运行命令安装"><a href="#运行命令安装" class="headerlink" title="运行命令安装"></a>运行命令安装</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rpm -ivh mongodb-org-*</span><br><span class="line">mkdir -p /data/mongodb/log</span><br><span class="line">mkdir -p /data/mongodb/data</span><br></pre></td></tr></table></figure>
+<h1 id="更改配置文件-vim-etc-mongod-conf"><a href="#更改配置文件-vim-etc-mongod-conf" class="headerlink" title="更改配置文件  vim /etc/mongod.conf"></a>更改配置文件  vim /etc/mongod.conf</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"># mongod.conf</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># for documentation of all options, see:</span><br><span class="line">#   http://docs.mongodb.org/manual/reference/configuration-options/</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># where to write logging data.</span><br><span class="line">systemLog:</span><br><span class="line">  destination: file</span><br><span class="line">  logAppend: true</span><br><span class="line">  path: /data/mongodb/log/mongod.log</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># Where and how to store data.</span><br><span class="line">storage:</span><br><span class="line">  dbPath: /data/mongodb/lib</span><br><span class="line">  journal:</span><br><span class="line">    enabled: true</span><br><span class="line">#  engine:</span><br><span class="line">#  wiredTiger:</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># how the process runs</span><br><span class="line">processManagement:</span><br><span class="line">  fork: true  # fork and run in background</span><br><span class="line">  pidFilePath: /var/run/mongodb/mongod.pid  # location of pidfile</span><br><span class="line">  timeZoneInfo: /usr/share/zoneinfo</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># network interfaces</span><br><span class="line">net:</span><br><span class="line">  port: 27017</span><br><span class="line">  bindIp: 0.0.0.0  # Enter 0.0.0.0,:: to bind to all IPv4 and IPv6 addresses or, alternatively, use the net.bindIpAll setting.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">security:</span><br><span class="line">  authorization: enabled</span><br></pre></td></tr></table></figure>
+
+<h1 id="创建相应文件夹并更改文件权限"><a href="#创建相应文件夹并更改文件权限" class="headerlink" title="创建相应文件夹并更改文件权限"></a>创建相应文件夹并更改文件权限</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /data/mongodb/log/</span><br><span class="line">mkdir /data/mongodb/lib</span><br><span class="line">mkdir -p /var/run/mongodb/</span><br><span class="line">chown -R mongod.mongod /data/mongodb</span><br><span class="line">chown -R mongod.mongod /var/run/mongodb/</span><br></pre></td></tr></table></figure>
+
+<h1 id="启动并设置开机启动mongodb"><a href="#启动并设置开机启动mongodb" class="headerlink" title="启动并设置开机启动mongodb"></a>启动并设置开机启动mongodb</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">systemctl start mongod</span><br><span class="line">systemctl enable mongod</span><br><span class="line">systemctl status mongod</span><br></pre></td></tr></table></figure>
+
+<h1 id="连接本地mongo并建新库和设置密码，连接命令：mongo"><a href="#连接本地mongo并建新库和设置密码，连接命令：mongo" class="headerlink" title="连接本地mongo并建新库和设置密码，连接命令：mongo"></a>连接本地mongo并建新库和设置密码，连接命令：mongo</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">use admin</span><br><span class="line">db.createUser(&#123; user: &quot;admin&quot;, pwd: &quot;ByOHZKqKsCl1DwuM&quot;, roles: [&#123; role: &quot;userAdminAnyDatabase&quot;, db: &quot;admin&quot; &#125;] &#125;)</span><br><span class="line"></span><br><span class="line">#退出mongodb，再重新登陆mongo</span><br><span class="line">use admin</span><br><span class="line">db.auth(&#x27;admin&#x27;,&#x27;ByOHZKqKsCl1DwuM&#x27;)</span><br><span class="line">use lsac</span><br><span class="line">db.createUser(&#123; user: &quot;lsac&quot;, pwd: &quot;BRDhPLwCV533UeXh&quot;, roles: [&#123; role: &quot;dbOwner&quot;, db: &quot;lsac&quot; &#125;] &#125;)</span><br></pre></td></tr></table></figure>
+<h1 id="退出并重新登陆mongodb"><a href="#退出并重新登陆mongodb" class="headerlink" title="退出并重新登陆mongodb"></a>退出并重新登陆mongodb</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">use lsac</span><br><span class="line">db.auth(&#x27;lsac&#x27;,&#x27;BRDhPLwCV533UeXh&#x27;)</span><br><span class="line">#添加一个数据并使数据库出现</span><br><span class="line">db.lsac.insert(&#123;&quot;name&quot;:&quot;huihui&quot;&#125;)</span><br><span class="line"></span><br><span class="line">mongodb权限详解</span><br><span class="line"></span><br><span class="line">权限详解</span><br><span class="line">内建角色：</span><br><span class="line">数据库用户角色：read、readWrite；</span><br><span class="line">数据库管理角色：dbAdmin、dbOwner、userAdmin；</span><br><span class="line">集群管理角色：   clusterAdmin、clusterManager、clusterMonitor、hostManager；</span><br><span class="line">备份恢复角色：   backup、restore；</span><br><span class="line">所有数据库角色：readAnyDatabase、readWriteAnyDatabase、userAdminAnyDatabase、dbAdminAnyDatabase</span><br><span class="line">超级用户角色：   root；  这里还有几个角色间接或直接提供了系统超级用户的访问（dbOwner 、userAdmin、userAdminAnyDatabase）</span><br><span class="line">内部角色：          __system；</span><br><span class="line">------------------------------------------------------------------------------------------</span><br><span class="line">角色说明：</span><br><span class="line">Read：                             允许用户读取指定数据库</span><br><span class="line">readWrite：                     允许用户读写指定数据库</span><br><span class="line">dbAdmin：                      允许用户在指定数据库中执行管理函数，如索引创建、删除，查看统计或访问system.profile</span><br><span class="line">userAdmin：                    允许用户向system.users集合写入，可以找指定数据库里创建、删除和管理用户</span><br><span class="line">dbOwner：                       允许在当前DB中执行任意操作</span><br><span class="line">readAnyDatabase：          赋予用户所有数据库的读权限，只在admin数据库中可用</span><br><span class="line">readWriteAnyDatabase： 赋予用户所有数据库的读写权限，只在admin数据库中可用</span><br><span class="line">userAdminAnyDatabase：赋予用户所有数据库管理User的权限，只在admin数据库中可用</span><br><span class="line">dbAdminAnyDatabase：   赋予管理所有数据库的权限，只在admin数据库中可用</span><br><span class="line">root：                                 超级账号，超级权限，只在admin数据库中可用。</span><br><span class="line">------------------------------------------------------------------------------------------</span><br><span class="line">集群管理角色：</span><br><span class="line">clusterAdmin：                  赋予管理集群的最高权限，只在admin数据库中可用</span><br><span class="line">clusterManager：               赋予管理和监控集群的权限</span><br><span class="line">clusterMonitor：                赋予监控集群的权限，对监控工具具有readonly的权限</span><br><span class="line">hostManager：                   赋予管理Server</span><br><span class="line"></span><br><span class="line">修改密码</span><br><span class="line"></span><br><span class="line">方法1：db.changeUserPassword(&quot;usertest&quot;,&quot;changepass&quot;);</span><br><span class="line">方法2：db.updateUser(&quot;usertest&quot;,&#123;pwd:&quot;changepass1&quot;&#125;)；</span><br><span class="line"></span><br><span class="line">修改权限</span><br><span class="line"></span><br><span class="line">修改权限</span><br><span class="line">db.updateUser(&quot;usertest&quot;,&#123;roles:[ &#123;role:&quot;read&quot;,db:&quot;testDB&quot;&#125; ]&#125;)</span><br><span class="line">db.grantRolesToUser(&quot;usertest&quot;, [&#123;role:&quot;readWrite&quot;, db:&quot;testDB&quot;&#125;,&#123;role:&quot;read&quot;, db:&quot;testDB&quot;&#125;])   # 修改权限</span><br><span class="line">db.revokeRolesFromUser(&quot;usertest&quot;,[&#123;role:&quot;read&quot;, db:&quot;testDB&quot;&#125;])   # 删除权限：</span><br><span class="line"></span><br><span class="line">删除用户</span><br><span class="line"></span><br><span class="line">删除用户</span><br><span class="line">db.dropUser(&#x27;usertest&#x27;)</span><br></pre></td></tr></table></figure>
+        </div>
+
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/mongodb/">#mongodb</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2022/01/05/linux/mdadm/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">mdadm</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>
+              -
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">陆辉</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%98%E7%BD%91%E4%B8%8B%E8%BD%BD"><span class="nav-number">1.</span> <span class="nav-text">官网下载</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C%E5%91%BD%E4%BB%A4%E5%AE%89%E8%A3%85"><span class="nav-number">2.</span> <span class="nav-text">运行命令安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9B%B4%E6%94%B9%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6-vim-etc-mongod-conf"><span class="nav-number">3.</span> <span class="nav-text">更改配置文件  vim &#x2F;etc&#x2F;mongod.conf</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E7%9B%B8%E5%BA%94%E6%96%87%E4%BB%B6%E5%A4%B9%E5%B9%B6%E6%9B%B4%E6%94%B9%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90"><span class="nav-number">4.</span> <span class="nav-text">创建相应文件夹并更改文件权限</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8%E5%B9%B6%E8%AE%BE%E7%BD%AE%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8mongodb"><span class="nav-number">5.</span> <span class="nav-text">启动并设置开机启动mongodb</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BF%9E%E6%8E%A5%E6%9C%AC%E5%9C%B0mongo%E5%B9%B6%E5%BB%BA%E6%96%B0%E5%BA%93%E5%92%8C%E8%AE%BE%E7%BD%AE%E5%AF%86%E7%A0%81%EF%BC%8C%E8%BF%9E%E6%8E%A5%E5%91%BD%E4%BB%A4%EF%BC%9Amongo"><span class="nav-number">6.</span> <span class="nav-text">连接本地mongo并建新库和设置密码，连接命令：mongo</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%80%80%E5%87%BA%E5%B9%B6%E9%87%8D%E6%96%B0%E7%99%BB%E9%99%86mongodb"><span class="nav-number">7.</span> <span class="nav-text">退出并重新登陆mongodb</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+</body>
+</html>

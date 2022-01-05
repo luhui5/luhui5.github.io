@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="陆辉">
+    
+    <title>
+        
+            k8s常用命令 |
+        
+        陆辉
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/logo.svg">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"luhui.work","root":"/","language":"zh-CN","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.svg","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":false,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+  </script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                陆辉
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">k8s常用命令</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/avatar.svg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">陆辉</span>
+                        
+                            <span class="author-label">Lv2</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2022-01-05 15:59:30</span>
+        <span class="mobile">2022-01-05 15:59</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/CloudNative/">CloudNative</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/k8s/">k8s</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="创建https证书"><a href="#创建https证书" class="headerlink" title="创建https证书"></a>创建https证书</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl -n=filecoin-dev create secret tls cert --key dev.wxlovan.com.key   --cert dev.wxlovan.com.pem</span><br></pre></td></tr></table></figure>
+
+<h1 id="使用本地文件创建configmap"><a href="#使用本地文件创建configmap" class="headerlink" title="使用本地文件创建configmap"></a>使用本地文件创建configmap</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl -n=lgd create configmap nginx.conf --from-file nginx.conf</span><br></pre></td></tr></table></figure>
+
+<h1 id="k8s扩展deployment"><a href="#k8s扩展deployment" class="headerlink" title="k8s扩展deployment"></a>k8s扩展deployment</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl -n=lsac-test scale --replicas=10 deployment identity-test</span><br></pre></td></tr></table></figure>
+
+<h1 id="查看之前的镜像版本号"><a href="#查看之前的镜像版本号" class="headerlink" title="查看之前的镜像版本号"></a>查看之前的镜像版本号</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">kubectl -n=lsac-demo rollout history deployment accountmanagement-demo</span><br><span class="line"></span><br><span class="line">kubectl -n=lsac-demo rollout undo deployment accountmanagement-demo --to-revision=5</span><br></pre></td></tr></table></figure>
+
+<h1 id="k8s创建docker-secret"><a href="#k8s创建docker-secret" class="headerlink" title="k8s创建docker secret"></a>k8s创建docker secret</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl create secret docker-registry secret --docker-server=registry.cn-hongkong.aliyuncs.com --docker-username=testname --docker-password=testpassword</span><br></pre></td></tr></table></figure>
+
+<h1 id="kubectl命令"><a href="#kubectl命令" class="headerlink" title="kubectl命令"></a>kubectl命令</h1><p>Find more information at: <a class="link"   target="_blank" rel="noopener" href="https://kubernetes.io/docs/reference/kubectl/overview/" >https://kubernetes.io/docs/reference/kubectl/overview/<i class="fas fa-external-link-alt"></i></a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">Basic Commands (Beginner):</span><br><span class="line">  create         Create a resource from a file or from stdin.</span><br><span class="line">  expose         使用 replication controller, service, deployment 或者 pod 并暴露它作为一个 新的</span><br><span class="line">Kubernetes Service</span><br><span class="line">  run            在集群中运行一个指定的镜像</span><br><span class="line">  set            为 objects 设置一个指定的特征</span><br><span class="line"> </span><br><span class="line">Basic Commands (Intermediate):</span><br><span class="line">  explain        查看资源的文档</span><br><span class="line">  get            显示一个或更多 resources</span><br><span class="line">  edit           在服务器上编辑一个资源</span><br><span class="line">  delete         Delete resources by filenames, stdin, resources and names, or by resources and label selector</span><br><span class="line"> </span><br><span class="line">Deploy Commands:</span><br><span class="line">  rollout        Manage the rollout of a resource</span><br><span class="line">  scale          为 Deployment, ReplicaSet, Replication Controller 或者 Job 设置一个新的副本数量</span><br><span class="line">  autoscale      自动调整一个 Deployment, ReplicaSet, 或者 ReplicationController 的副本数量</span><br><span class="line"> </span><br><span class="line">Cluster Management Commands:</span><br><span class="line">  certificate    修改 certificate 资源.</span><br><span class="line">  cluster-info   显示集群信息</span><br><span class="line">  top            Display Resource (CPU/Memory/Storage) usage.</span><br><span class="line">  cordon         标记 node 为 unschedulable</span><br><span class="line">  uncordon       标记 node 为 schedulable</span><br><span class="line">  drain          Drain node in preparation for maintenance</span><br><span class="line">  taint          更新一个或者多个 node 上的 taints</span><br><span class="line"> </span><br><span class="line">Troubleshooting and Debugging Commands:</span><br><span class="line">  describe       显示一个指定 resource 或者 group 的 resources 详情</span><br><span class="line">  logs           输出容器在 pod 中的日志</span><br><span class="line">  attach         Attach 到一个运行中的 container</span><br><span class="line">  exec           在一个 container 中执行一个命令</span><br><span class="line">  port-forward   Forward one or more local ports to a pod</span><br><span class="line">  proxy          运行一个 proxy 到 Kubernetes API server</span><br><span class="line">  cp             复制 files 和 directories 到 containers 和从容器中复制 files 和 directories.</span><br><span class="line">  auth           Inspect authorization</span><br><span class="line"> </span><br><span class="line">Advanced Commands:</span><br><span class="line">  diff           Diff live version against would-be applied version</span><br><span class="line">  apply          通过文件名或标准输入流(stdin)对资源进行配置</span><br><span class="line">  patch          使用 strategic merge patch 更新一个资源的 field(s)</span><br><span class="line">  replace        通过 filename 或者 stdin替换一个资源</span><br><span class="line">  wait           Experimental: Wait for a specific condition on one or many resources.</span><br><span class="line">  convert        在不同的 API versions 转换配置文件</span><br><span class="line">  kustomize      Build a kustomization target from a directory or a remote url.</span><br><span class="line"> </span><br><span class="line">Settings Commands:</span><br><span class="line">  label          更新在这个资源上的 labels</span><br><span class="line">  annotate       更新一个资源的注解</span><br><span class="line">  completion     Output shell completion code for the specified shell (bash or zsh)</span><br><span class="line"> </span><br><span class="line">Other Commands:</span><br><span class="line">  api-resources  Print the supported API resources on the server</span><br><span class="line">  api-versions   Print the supported API versions on the server, in the form of &quot;group/version&quot;</span><br><span class="line">  config         修改 kubeconfig 文件</span><br><span class="line">  plugin         Provides utilities for interacting with plugins.</span><br><span class="line">  version        输出 client 和 server 的版本信息</span><br><span class="line"> </span><br><span class="line">Usage:</span><br><span class="line">  kubectl [flags] [options]</span><br></pre></td></tr></table></figure>
+        </div>
+
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/k8s/">#k8s</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2022/01/05/linux/mdadm/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">mdadm</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2022/01/05/devops/ELK/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">ELK</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>
+              -
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">陆辉</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%9B%E5%BB%BAhttps%E8%AF%81%E4%B9%A6"><span class="nav-number">1.</span> <span class="nav-text">创建https证书</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%9C%AC%E5%9C%B0%E6%96%87%E4%BB%B6%E5%88%9B%E5%BB%BAconfigmap"><span class="nav-number">2.</span> <span class="nav-text">使用本地文件创建configmap</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#k8s%E6%89%A9%E5%B1%95deployment"><span class="nav-number">3.</span> <span class="nav-text">k8s扩展deployment</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E4%B9%8B%E5%89%8D%E7%9A%84%E9%95%9C%E5%83%8F%E7%89%88%E6%9C%AC%E5%8F%B7"><span class="nav-number">4.</span> <span class="nav-text">查看之前的镜像版本号</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#k8s%E5%88%9B%E5%BB%BAdocker-secret"><span class="nav-number">5.</span> <span class="nav-text">k8s创建docker secret</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#kubectl%E5%91%BD%E4%BB%A4"><span class="nav-number">6.</span> <span class="nav-text">kubectl命令</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+</body>
+</html>
