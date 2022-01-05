@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="陆辉">
+    
+    <title>
+        
+            CI/CD最佳实践之路 |
+        
+        陆辉
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/logo.svg">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"luhui.work","root":"/","language":"zh-CN","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.svg","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":false,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+  </script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                陆辉
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">CI/CD最佳实践之路</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/avatar.svg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">陆辉</span>
+                        
+                            <span class="author-label">Lv2</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2021-12-30 11:35:59</span>
+        <span class="mobile">2021-12-30 11:35</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/DevOps/">DevOps</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/CI-CD/">CI/CD</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <p><img src="/images/cicd1.jpg" alt="cicd1"></p>
+<p>本文旨在介绍ZBJ DevOps团队倾力打造的DevOps平台中关于CI/CD流水线部分的实践。历经三次大版本迭代更新的流水线，完美切合ZBJ各种业务发展需求，在满足高频率交付的同时，提高了研发效率，降低了研发成本，保证了交付质量。</p>
+<p>持续集成（Continuous Integration）简称CI，持续集成强调开发人员提交了新代码之后，立刻进行构建、（单元）测试。根据结果，我们可以确定新代码和原有代码能否正确地集成在一起。持续集成过程中很重视自动化测试验证结果，对可能出现的一些问题进行预警，以保障最终集成的代码没有问题。持续交付（Continuous Delivery）简称CD，持续交付在持续集成的基础上，将集成后的代码部署到更贴近真实运行环境的「类生产环境」（test，testing）中，然后交付给质量团队，以供评审。如果评审通过，代码就进入生产阶段。持续交付并不是指软件每一个改动都要尽快部署到产品环境中，它指的是任何的代码修改都可以在任何时候实施部署。有的人也把CD称为Continuous Deployment（持续部署），持续部署是指当交付的代码通过评审之后，可以部署到生产环境中。这里需要注意的是，持续部署应该是持续交付的最高阶段，持续交付是一种能力，持续部署是一种持续交付的表现方式。</p>
+<p><img src="/images/cicd2.jpg" alt="cicd2"></p>
+<h1 id="背景介绍"><a href="#背景介绍" class="headerlink" title="背景介绍"></a>背景介绍</h1><p>在提到ZBJ DevOps流水线之前，先交代一下历史背景。2015年前，猪八戒网80%的项目都是用PHP语言开发的，剩下的少部分使用的是Nodejs和Java。2015年，ZBJ研发中心进行了自发性的“工业革命”——腾云七号行动——使用Java语言将核心业务代码进行了重构和拆解，建立了以Dubbo为核心的SOA微服务框架，使用ZooKeeper+Swoole为核心的业务调用提供机制。满足新业务使用Java语言编写、老业务仍然使用PHP编写，同时支持两种语言（Nodejs&amp;PHP）调用Dubbo服务的能力。</p>
+<p><img src="/images/cicd3.jpg" alt="cicd3"></p>
+<p>之后，开始全面推行前后端分离，于是流行了沿用至今的主流架构：</p>
+<ul>
+<li>Nodejs：负责前端</li>
+<li>Java：负责后端</li>
+<li>PHP：负责老项目维护</li>
+</ul>
+<p>剩余部分小系统或者边缘化的工具使用其他语言开发，或者在此三种语言基础上的一些变种：</p>
+<p><img src="/images/cicd4.jpg" alt="cicd4"></p>
+<p>随着业务的重构和拆解，以前一个个庞大的系统被拆解成若干个独立的小系统，使得交付变得更加容易。</p>
+<p><img src="/images/cicd5.jpg" alt="cicd5"></p>
+<p>而随着项目工程数量的快速增长，交付开始变得频繁，传统开发模式的一两个月交付一次远远不能满足交付要求，改变迫在眉睫。</p>
+<p>2016年Q3季度，感受到改变迫在眉睫，ZBJ研发中心经充分准备后决定抽调部分运维同学和开发同学组建一支名为“DevOps取经团”的团队，力图打造属于ZBJ自己的以提高研发效率为目标的平台。</p>
+<h1 id="ZBJ-CI-CD发展史"><a href="#ZBJ-CI-CD发展史" class="headerlink" title="ZBJ CI/CD发展史"></a>ZBJ CI/CD发展史</h1><h2 id="第一阶段：2015年以前"><a href="#第一阶段：2015年以前" class="headerlink" title="第一阶段：2015年以前"></a>第一阶段：2015年以前</h2><p>2015年以前，此时“工业革命”还未开始，ZBJ所谓的流水线先后经历了“大锅饭年代”、“公交车模式”。</p>
+<p><img src="/images/cicd6.jpg" alt="cicd6"><br><img src="/images/cicd7.jpg" alt="cicd7"></p>
+<p>可以看到，无论是“大锅饭年代”，还是“公交车模式”都会面临很多问题：</p>
+<ul>
+<li>项目耦合度太高，容易导致合并冲突，环境冲突等。</li>
+<li>集成过程中未对代码进行审查，错误代码发布到测试环境后，会影响依赖方的测试。</li>
+<li>发布受限制，必须在专门时间由专人发布。</li>
+<li>发布异常时，回滚工作异常艰难。</li>
+</ul>
+<h2 id="第二阶段（2016-2017）：私家车模式"><a href="#第二阶段（2016-2017）：私家车模式" class="headerlink" title="第二阶段（2016-2017）：私家车模式"></a>第二阶段（2016-2017）：私家车模式</h2><p>通过“工业革命”的变革，对系统的重构和拆解，同时引入工程责任制，给每个工程指定负责人，对工程的各种权限进行了管控，业务范围和边界变得更加清晰，使得项目耦合度太高的问题得到了很大的缓解。</p>
+<p>解决了项目耦合度高的问题，接下来解决如何实现随时由开发团队自主发代码的问题。</p>
+<p>用Jira做研发流程管理，制定针对ZBJ需求上线的流程：</p>
+<p><img src="/images/cicd8.jpg" alt="cicd8"></p>
+<p>需求上线流程每个环节对应流水线的每个环境，只有到达某个环节，才能推送对应环境，每个环节会制定对应的准入准出，保证每走到的下一步都离成功部署更近一步。</p>
+<p><img src="/images/cicd9.jpg" alt="推送环境示意图"></p>
+<p>每个环境制定不一样的执行任务，基本包括Jira状态校验，代码审查（单元测试），编译构建，上传包到制品库，拉取制品库中的包部署到对应环境。</p>
+<p>值得注意的是，我们引入了Docker发布，所以我们的流水线是支持容器和虚拟机的混合发布的。虚拟机发布方式的制品是存放在一个叫做文件服务器的地方，容器发布方式的制品是push到Harbor仓库的。</p>
+<p><img src="/images/cicd10.jpg" alt="容器发布&amp;虚拟机构建打包示意图"></p>
+<p>采用的分支策略是：branches开发，master发布，tags存档（我们使用GitLab作为源码管理工具）。在测试环境通常为非master分支，测试完毕后合并到master，推送预发布，并针对当前版本打一个tag。针对这种情况，我们的“一次构建，处处使用”指的是测试环境用测试环境构建好的包，其他环境用预发布构建好的包。</p>
+<p><img src="/images/cicd11.jpg" alt="各环境使用制品示意图"></p>
+<p>在推送每一个环境（test环境除外）时，都会校验当前版本的代码是否为前置环境推送过的最新代码，保证不会将没有经过审查的代码交付到线上。</p>
+<p>在测试环境每一次编译构建之前，都会对代码进行一次安全扫描，Java语言的工程通过解析pom文件对其所有的依赖进行递归扫描，Nodejs语言的工程通过对node_module里下载的包进行递归扫描，确保有安全漏洞的代码不会被带入到生产环境。</p>
+<p>编译构建时，会根据开发语言的不同，执行不同的编译脚本，根据发布方式的不同（虚拟机发布或者容器发布），执行不一样的后续操作步骤。</p>
+<p>我们将Jenkins作为后台编译服务器，采用的是多master多slave的架构，我们并未直接使用Jenkins的流水线，而是开发了一个叫Pipeline的系统，与Jenkins做对接（此时的对接方式是调用Jenkins的API），由Pipeline系统提供Jenkins作业所需要的全部信息，另外编写了整个过程需要具体执行操作的脚本，通过Jenkins的job配置“Execute shell”的方式每次在构建之前导入到工作空间。</p>
+<p><img src="/images/cicd12.jpg"></p>
+<p>流水线标准生产过程大体如下：</p>
+<p><img src="/images/cicd13.jpg" alt="流水线标准生产过程示意图"></p>
+<p>另外，针对回滚的情况，因为每次在上线前都会在预发布会构建一个稳定的版本，并打一个tag，并且记录下tag对应的制品（包或者镜像）版本，所以在回滚的时候，只要选择要回滚的版本，便能找到对应版本的制品，进行重新发布，以此达到回滚的目的。</p>
+<p><img src="/images/cicd14.jpg" alt="回滚流程"></p>
+<p>至此，第二阶段大体实现了以下功能：</p>
+<ul>
+<li>通过用Jira需求上线流程和流水线做整合，以及多种推送前的校验，保证了上线过程的每一步都是可靠的</li>
+<li>每一个环境的集成和发布都是自动化的</li>
+<li>因为过程变得可靠且自动化，使得将发布过程开放给研发团队成为了可能，达到了随时自主上线的目的。</li>
+</ul>
+<p>然而这样的流水线也有诸多问题：</p>
+<ul>
+<li>不够灵活，如在推送测试环境时，整个过程执行的步骤是固定的的，即第一步做什么，第二步做什么都是固定的，不能新增也不能删减，如某些团队需要进行单元测试，有的不需要，但流水线都会去执行单元测试，通常情况下单元测试过程是一个花费时间比较长的过程，这对于需要频繁更改和部署的业务是不友好的。</li>
+<li>推送成功率不高，因为整个过程是串联的，某一个环节出现错误，将会导致本次推送失败，而某些环节本不应该影响构建结果的，最后导致了构建失败。</li>
+</ul>
+<h2 id="第三阶段（2017-2019）：拥有灵活车道的私家车模式"><a href="#第三阶段（2017-2019）：拥有灵活车道的私家车模式" class="headerlink" title="第三阶段（2017-2019）：拥有灵活车道的私家车模式"></a>第三阶段（2017-2019）：拥有灵活车道的私家车模式</h2><p>考虑到前面提到的两点，ZBJ DevOps团队在17年底对流水线做了二次改造：</p>
+<ol>
+<li>所有执行步骤拆解成独立原子任务，建立原子任务库；</li>
+<li>将原子任务根据功能性分为两种，校验类以及执行类，校验类原子任务主要是是做准入准出的判断，执行类主要是编译构建，打镜像，上传hub仓库以及部署。</li>
+<li>将原子任务根据执行载体分为两种，Java类和Jenkins类，直接用Java程序执行的任务为Java类，需要Jenkins执行的任务为Jenkins类。</li>
+<li>根据开发语言、发布方式、业务类型的不同，从原子任务库中选取不同原子任务组成一条标准有序的执行流水线。</li>
+<li>提供工程特殊配置，如有些工程需要增强校验，有的工程需要减少校验，则可以通过启用和禁用的方式进行特殊配置，如下图所示，根据1、2和3步骤后可最终生成一条本次执行的流水线任务列表。</li>
+</ol>
+<p><img src="/images/cicd15.jpg" alt="原子任务一览表"></p>
+<p><img src="/images/cicd16.jpg" alt="执行效果图"></p>
+<ol start="6">
+<li>根据原子任务的制定，我们将Jenkins执行的job也拆分成了对应的几类，每一类拥有足够多数量的job进行任务的执行。</li>
+</ol>
+<p><img src="/images/cicd17.png"></p>
+<p><img src="/images/cicd18.jpg"></p>
+<ol start="7">
+<li>升级了Pieline系统和Jenkins通信架构，通过编写一个RabbitMQ的插件植入到Jenkins Master上，从原来调用API的方式，改成用RabbitMQ的方式进行通信，大大提高了效率和成功率。</li>
+</ol>
+<p><img src="/images/cicd19.jpg" alt="通信示意图"></p>
+<ol start="8">
+<li>升级了Jenkins架构，构建一个能适配ZBJ所有开发语言的镜像，利用Jenkins Master的Kubernetes插件，将原来的虚拟机slave节点全部替换成容器slave节点，并且这个slave集群完全由Jenkins Master的Kubernetes插件调度，不论在高并发和低并发的时候都能及时扩缩容，满足业务需求。</li>
+</ol>
+<h2 id="第四阶段（2020-至今）：智能驾驶模式"><a href="#第四阶段（2020-至今）：智能驾驶模式" class="headerlink" title="第四阶段（2020-至今）：智能驾驶模式"></a>第四阶段（2020-至今）：智能驾驶模式</h2><p>可以看到，到第三个阶段为止，我们的每一次编译过程，都需要研发同学“推送一下”，而且这个过程也是需要花费一些时间的，比如一个正常的Nodejs工程平均编译时长至少需要花费100+s以上，一个正常的Java工程平均编译时长至少也是需要30s以上，由于我们提供了推送过程“可视化”的功能，且没有执行结果的通知，导致用户必须关注推送过程以确保本次推送是成功的，大大浪费了研发同学的时间。</p>
+<p>在此基础上，我们进一步做出了以下优化：</p>
+<ol>
+<li>为每一个GitLab上的工程添加一个Webhook，每当开发人员向仓库push一次，便会触发Webhook，调用Pipeline系统接口进行一次快速构建。</li>
+</ol>
+<p><img src="/images/cicd20.jpg"></p>
+<p>注意：并不是每次push都会进行一次快速构建，为了防止开发同学频繁修改少量代码提交到版本库，我们规定了一个“暗号”，只有当开发同学在commit message中添加这个“暗号”，才会触发一次快速构建。</p>
+<p><img src="/images/cicd21.jpg" alt="auto_trigger_build就是暗号内容"></p>
+<p><img src="/images/cicd22.jpg"></p>
+<ol start="2">
+<li>快速构建的结果是构建一个包或者一个镜像，存放在前文提到过的文件服务器或者Harbor仓库。在下一次用户“推送”的时候，便会根据分支和版本判断是否存在已编译过的包或者镜像，如果存在，则直接使用，跳过编译过程。</li>
+</ol>
+<p><img src="/images/cicd23.jpg"></p>
+<ol start="3">
+<li>增加快速构建结果通知，因为整个快速构建过程是后台执行的，所以流水线系统通过企业微信的方式通知到用户本次快速构建的结果。</li>
+</ol>
+<p><img src="/images/cicd24.jpg" alt="快速构建前通知"></p>
+<p><img src="/images/cicd25.jpg" alt="快速构建完成后结果通知"></p>
+<ol start="4">
+<li>除了增加快速构建的通知，我们还增加了推送的通知。用户再也不用关注推送过程，只需要在推送后继续做其他事情，推送结果由企业微信通知到用户。</li>
+</ol>
+<p><img src="/images/cicd26.jpg"></p>
+<p><img src="/images/cicd27.jpg"></p>
+<p>值得注意的是，当推送失败后，流水线系统也会通知到用户，进行对应问题的排查。</p>
+<p><img src="/images/cicd28.jpg"></p>
+<p>至此，ZBJ的CI/CD实践之路基本介绍完毕，当然，其中也还有很多细节方面，因为涉及的东西太多，不便铺开来讲。</p>
+<h1 id="总结三次重大改造的结果"><a href="#总结三次重大改造的结果" class="headerlink" title="总结三次重大改造的结果"></a>总结三次重大改造的结果</h1><p>第一次改造：奠定了ZBJ的CI/CD基础，打造了一条标准的流水线，解放了运维劳动力（过程全自动化），提高了研发效率，降低了研发成本（运维同学由最多时候的三四十个减少到了不到十个人）。</p>
+<p>第二次改造：流水线实现了高可用，同时其灵活的配置能完美满足不同业务团队的需求。</p>
+<p>第三次改造：提升了流水线效率，弱化推送过程，增强以人为本的体验，使推送过程更加智能化。</p>
+<h1 id="谈谈未来"><a href="#谈谈未来" class="headerlink" title="谈谈未来"></a>谈谈未来</h1><p>CI/CD实践之路还在继续，因为不同公司有不同的业务场景，而同一公司的业务也会随着时代的发展不断变化，只有适合自己的才是最好的，只有能拥抱变化的才是最好的，但万变不离其宗的，我觉得应该有一下几点：</p>
+<ul>
+<li>CI/CD应该是以提高研发效率为目标的实践，一切脱离这个目标只是为了迎合什么口号而做什么的是都是耍牛氓。而实现这个目标是一个比较漫长的过程，一开始会比较容易，后面就会越来越难，这需要不断思考和学习的过程。</li>
+<li>CI/CD应该是紧贴业务的，因为业务的不同，要求的技术架构也会有所不同，随之而来，要求的交付方式也会有所不同。</li>
+<li>CI/CD应该是以人为本的，我们应该尽可能地将一切繁琐的过程交给程序去执行，而人只需要“坐享其成”或者做少量的决策即可。</li>
+</ul>
+
+        </div>
+
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/CI-CD/">#CI/CD</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2022/01/05/devops/ansible-playbook/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">ansible-playbook目录结构</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2021/12/30/CloudNative/K8s%E9%9B%86%E7%BE%A4%E5%8D%87%E7%BA%A7%E7%9A%844%E7%A7%8D%E6%96%B9%E5%BC%8F/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">K8s集群升级的4种方式</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>
+              -
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">陆辉</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%83%8C%E6%99%AF%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.</span> <span class="nav-text">背景介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ZBJ-CI-CD%E5%8F%91%E5%B1%95%E5%8F%B2"><span class="nav-number">2.</span> <span class="nav-text">ZBJ CI&#x2F;CD发展史</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E9%98%B6%E6%AE%B5%EF%BC%9A2015%E5%B9%B4%E4%BB%A5%E5%89%8D"><span class="nav-number">2.1.</span> <span class="nav-text">第一阶段：2015年以前</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E9%98%B6%E6%AE%B5%EF%BC%882016-2017%EF%BC%89%EF%BC%9A%E7%A7%81%E5%AE%B6%E8%BD%A6%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.2.</span> <span class="nav-text">第二阶段（2016-2017）：私家车模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E9%98%B6%E6%AE%B5%EF%BC%882017-2019%EF%BC%89%EF%BC%9A%E6%8B%A5%E6%9C%89%E7%81%B5%E6%B4%BB%E8%BD%A6%E9%81%93%E7%9A%84%E7%A7%81%E5%AE%B6%E8%BD%A6%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.3.</span> <span class="nav-text">第三阶段（2017-2019）：拥有灵活车道的私家车模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E9%98%B6%E6%AE%B5%EF%BC%882020-%E8%87%B3%E4%BB%8A%EF%BC%89%EF%BC%9A%E6%99%BA%E8%83%BD%E9%A9%BE%E9%A9%B6%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.4.</span> <span class="nav-text">第四阶段（2020-至今）：智能驾驶模式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E7%BB%93%E4%B8%89%E6%AC%A1%E9%87%8D%E5%A4%A7%E6%94%B9%E9%80%A0%E7%9A%84%E7%BB%93%E6%9E%9C"><span class="nav-number">3.</span> <span class="nav-text">总结三次重大改造的结果</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%B0%88%E8%B0%88%E6%9C%AA%E6%9D%A5"><span class="nav-number">4.</span> <span class="nav-text">谈谈未来</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+</body>
+</html>

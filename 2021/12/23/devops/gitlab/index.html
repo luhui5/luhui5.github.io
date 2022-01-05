@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="陆辉">
+    
+    <title>
+        
+            gitlab |
+        
+        陆辉
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/logo.svg">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"luhui.work","root":"/","language":"zh-CN","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.svg","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":false,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+  </script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                陆辉
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">gitlab</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/avatar.svg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">陆辉</span>
+                        
+                            <span class="author-label">Lv2</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2021-12-23 10:12:28</span>
+        <span class="mobile">2021-12-23 10:12</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/DevOps/">DevOps</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/gitlab/">gitlab</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <p>这里需要安装 10.1.2 版本的 Gitlab，并把数据导入到里面，之后在这里测试 Gitlab 的升级。</p>
+<p>安装<br>添加 repo</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl https://packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.rpm.sh | sudo bash</span><br></pre></td></tr></table></figure>
+
+
+<p>安装 10.1.2 版本的 gitlab：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install gitlab-ee-10.1.2-ee.0.el7.x86_64</span><br></pre></td></tr></table></figure>
+<p>安装结果：<br><img src="/images/gitlab1.jpg" alt="gitlab1"></p>
+<p>修改配置<br>配置文件是 /etc/gitlab/gitlab.rb 。</p>
+<p>external_url 要确保为正确的ip或者域名，git的链接才正常。 之后就可以通过浏览器访问了，默认是用80端口。</p>
+<p>修改备份目录为 /data1/gitlab/git-backups 。</p>
+<p>修改数据储存目录为 /data1/gitlab/git-data 。</p>
+<p>全部修改的配置如下：</p>
+<p>external_url ‘<a href="http://1.2.3.4:10000&#39;">http://1.2.3.4:10000&#39;</a><br>gitlab_rails[‘backup_path’] = “/data1/gitlab/git-backups”<br>gitlab_rails[‘backup_archive_permissions’] = 0644<br>gitlab_rails[‘backup_keep_time’] = 604800<br>git_data_dirs({ “default” =&gt; { “path” =&gt; “/data1/gitlab/git-data” } })<br>gitlab_rails[‘gitlab_shell_ssh_port’] = 51668<br>604800 秒是 7 天。</p>
+<p>然后执行命令。</p>
+<p>$ sudo gitlab-ctl reconfigure<br>这个命令要执行一段时间。这个命令会把配置保存到 /var/opt/gitlab 目录中。</p>
+<p>目录说明<br>/opt/gitlab 保存 Gitlab 自身的代码和依赖</p>
+<p>/var/opt/gitlab 保存了 gitlab-ctl reconfigure 最终写入的配置，</p>
+<p>/etc/gitlab 保存了可以人肉编辑的配置和证书。</p>
+<p>/var/log/gitlab 保存了 gitlab 的日志。</p>
+<p>启动<br>第一次查看状态：</p>
+<p>$ sudo gitlab-ctl status<br>发现各组件都已经启动了。。。。</p>
+<p>这里再启动一下保险：</p>
+<p>$ sudo gitlab-ctl start<br>其他命令：</p>
+<p>gitlab-ctl stop<br>gitlab-ctl restart<br>gitlab-ctl restart sidekiq<br>gitlab-rails console<br>查看数据目录发现已经有数据了，备份数据目录还没有数据：</p>
+<p>$ sudo ls /data1/gitlab/git-data/<br>$ sudo ls /data1/gitlab/git-backups/<br>创建备份<br>上面的配置已经指定了备份的目录和保存时间，下面来创建备份：</p>
+<p>$ sudo gitlab-rake gitlab:backup:create<br>再次查看备份目录已经有东西了：</p>
+<p>$ sudo ls /data1/gitlab/git-backups/<br>上面只是保存了 Gitlab 中的数据，即 Gitlab 中的用户、代码数据，但是没有保存 Gitlab 的配置。下面的脚本用来打包配置：</p>
+<p>$ sudo sh -c ‘umask 0077; tar -cf $(date “+etc-gitlab-%s.tar”) -C / etc/gitlab’<br>亲测可行，解包验证：</p>
+<p>$ sudo tar xvf etc-gitlab-1586852672.tar<br>自动备份：</p>
+<p>#通过crontab使用备份命令实现自动备份:<br>0 2 * * * /opt/gitlab/bin/gitlab-rake gitlab:backup:create<br>备份脚本 /data1/gitlab/git-backups/backup_gitlab.sh ：</p>
+<p>#!/bin/bash<br>#backuping gitlab configurations<br>back_dir=’/data1/gitlab/git-backups/‘</p>
+<p>date=<code>date +&#39;%F-%T&#39;</code><br>cd $back_dir<br>sh -c ‘umask 0077; tar -cf $(date “+etc-gitlab-%s.tar”) -C / etc/gitlab’<br>#backup gitlab data &amp; delete old files<br>/bin/gitlab-rake gitlab:backup:create<br>find $back_dir -name “*.tar” -mtime +7 | xargs rm -f<br>#rsync to zfs server<br>rsync -a –delete –password-file=/root/rsyncd.passwd $back_dir <a class="link"   href="mailto:&#103;&#x69;&#116;&#x6c;&#x61;&#98;&#x40;&#52;&#x2e;&#x35;&#x2e;&#x36;&#x2e;&#x37;" >&#103;&#x69;&#116;&#x6c;&#x61;&#98;&#x40;&#52;&#x2e;&#x35;&#x2e;&#x36;&#x2e;&#x37;<i class="fas fa-external-link-alt"></i></a>::gitlab<br>echo “<code>date +%F-%T</code> rsync done” &gt;&gt; rsync_gitlab.log<br>这个脚本自动备份配置和数据，并且会自动删除7天前的旧备份。</p>
+<p>rsync命令是一个远程数据同步工具，可通过LAN/WAN快速同步多台主机间的文件,这个算法只传送两个文件的不同部分，而不是每次都整份传送，因此速度相当快。。</p>
+<p>rsync：</p>
+<p>-a 归档模式，表示以递归方式传输文件，并保持所有文件属性。<br>–delete 删除那些目标中有，但是源地址中没有的文件。<br>–password-file 从FILE中得到密码。<br>另外这里使用双冒号的原因是：从本地机器拷贝文件到远程rsync服务器中！</p>
+<p>最后记录日志。</p>
+<p>编辑 /etc/crontab 设置定时任务：</p>
+<p>0 0 * * * root /data1/gitlab/git-backups/backup_gitlab.sh &gt; /dev/null 2&gt;&amp;1<br>这样就实现了每日凌晨0:00 进行全量备份(数据&amp;配置文件),数据保存最近7天,配置文件保存最近7天;</p>
+<p>修改 root 密码<br>执行：</p>
+<p>$ sudo gitlab-rails console production<br>依次输入：</p>
+<p> user = User.where(id: 1).first<br> user.password=”<strong><strong><strong>“<br> user.password_confirmation=”</strong></strong></strong>“<br> user.save!<br> quit<br>迁移 &amp; 恢复<br>迁移只比恢复多了一步，就是把数据复制过来。</p>
+<p>复制数据时注意，别复制太大的数据，生产环境要小心！！！这里略过复制。</p>
+<p>先暂停服务：</p>
+<p>$ sudo gitlab-ctl stop unicorn<br>$ sudo gitlab-ctl stop sidekiq<br>再恢复数据：</p>
+<p>$ sudo gitlab-rake gitlab:backup:restore BACKUP=1586804022_2020_04_14_10.1.2<br>恢复完成后重新启动：</p>
+<p>$ sudo gitlab-ctl start<br>检查 GitLab 是否正常运行：</p>
+<p>$ gitlab-rake gitlab:check SANITIZE=true<br>去掉注册<br>管理员账号登录 —-&gt; 进入 Admin area (就是那个🔧) —-&gt; settings —-&gt; 取消 Sign-up enabled —&gt; save</p>
+
+        </div>
+
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/gitlab/">#gitlab</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2021/12/23/linux/yum/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">yum</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2021/12/22/linux/Ubuntu18%E5%88%9D%E5%A7%8B%E5%8C%96/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Ubuntu18初始化</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>
+              -
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">陆辉</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+</body>
+</html>
